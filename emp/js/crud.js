@@ -172,33 +172,23 @@ function makeAllSortable(parent) {
 window.onload = function () {makeAllSortable();};
 
 // arrow changing
- function chngimg() {
+ function chngimg(val1) {
+    val1 = "imgplus" + val1;
+    var img = document.getElementById(val1).src; //= 'Images/Minus.gif';
+    var x = img.split("/");
+    var t = x.length - 1;
+    var y = x[t];
+    var imgName = y;
+    var imgsrc1 = 'down.png';
+    var imgsrc2 = 'up.png';
+    if (imgName == imgsrc1) {
 
-    var img = document.getElementById('imgplus1').src; //= 'Images/Minus.gif';
-    
-var x = img.split("/");
-        var t = x.length-1;
-        var y = x[t];
-        var imgName=y;
-       
-        var imgsrc1='down.png';
-        var imgsrc2='up.png';
-        
-        if(imgName==imgsrc1)
-        {
+        document.getElementById(val1).src = 'assets/images/up.png';
 
-document.getElementById('imgplus1').src = 'assets/images/up.png';
-document.getElementById('imgplus2').src = 'assets/images/up.png';
-document.getElementById('imgplus3').src = 'assets/images/up.png';
-document.getElementById('imgplus4').src = 'assets/images/up.png';
-        }
-         if(imgName==imgsrc2)
-        {
-document.getElementById('imgplus1').src = 'assets/images/down.png';
-document.getElementById('imgplus2').src = 'assets/images/down.png';
-document.getElementById('imgplus3').src = 'assets/images/down.png';
-document.getElementById('imgplus4').src = 'assets/images/down.png';
-        }
-   
+    }
+    if (imgName == imgsrc2) {
+        document.getElementById(val1).src = 'assets/images/down.png';
 
-  }
+    }
+
+}
