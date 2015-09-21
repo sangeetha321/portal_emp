@@ -173,6 +173,7 @@ window.onload = function () {makeAllSortable();};
 
 // arrow changing
  function chngimg(val1) {
+     alert("hii");
     val1 = "imgplus" + val1;
     var img = document.getElementById(val1).src; //= 'Images/Minus.gif';
     var x = img.split("/");
