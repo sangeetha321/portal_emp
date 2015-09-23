@@ -63,7 +63,7 @@
     </style>
   </head>
   <body>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <input id="pac-input" class="controls" type="text" placeholder="Search">
     <div id="map"></div>
     <script>
 // This example adds a search box to a map, using the Google Place Autocomplete
@@ -138,7 +138,7 @@ function initAutocomplete() {
 var arrMarkers = [];
 
  google.maps.event.addListener(map, 'click', function(event) {
-       alert(event.latLng);
+       
     map.panTo(event.latLng);
     map.setZoom(9);
       addMarker(event.latLng);
