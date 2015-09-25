@@ -15,7 +15,6 @@
     <!-- Custom CSS -->
     <link href="css/emp_portal.css" rel="stylesheet">
     <!-- Custom Fonts -->
-   
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <script src="js/validation.js"></script>
@@ -25,58 +24,13 @@
       margin: 100px;
       }
     </style>
-     <style>
-     
-      #map {
-       
-    width: 100%;
-    height: 443px;
-}
-      }
-.controls {
-  margin-top: 10px;
-  border: 1px solid transparent;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  height: 32px;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-#pac-input {
-  background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;
-  width: 300px;
-}
-
-#pac-input:focus {
-  border-color: #4d90fe;
-}
-.pac-container {
-  font-family: Roboto;
-}
-#type-selector {
-  color: #fff;
-  background-color: #4d90fe;
-  padding: 5px 11px 0px 11px;
-}
-#type-selector label {
-  font-family: Roboto;
-  font-size: 13px;
-  font-weight: 300;
-}
+    <style>
     </style>
   </head>
   <body id="page-top" class="index">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-       
         <div class="navbar-header page-scroll">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
           <span class="sr-only">Toggle navigation</span>
@@ -148,7 +102,6 @@
                         <div class="col-lg-12 text-center">
                           <div class="col-lg-12 text-center" id="editEmp">
                             <h3>Add New Employee</h3>
-                            
                           </div>
                         </div>
                         <hr>
@@ -156,7 +109,7 @@
                         <div class="form-group">
                           <label for="empName" class="control-label col-xs-4">Name</label>
                           <div class="col-xs-8">
-                           <input type="text" name="empName" id="empName" class="form-control" placeholder="Name" required >
+                            <input type="text" name="empName" id="empName" class="form-control" placeholder="Name" required >
                           </div>
                         </div>
                         <div class="form-group">
@@ -169,19 +122,17 @@
                           <label for="inputDept" class="control-label col-xs-4">Department</label>
                           <div class="col-xs-8">
                             <input type="text" name="inputDept" id="inputDept" class="form-control" placeholder="Department" required>
-                              
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="inputDesig" class="control-label col-xs-4">Designation</label>
                           <div class="col-xs-8">
-                             <input type="text" name="inputDesig" id="inputDesig" class="form-control" placeholder="Designation" required >
-                             <input type="hidden" name="rowVal" id="rowVal">
+                            <input type="text" name="inputDesig" id="inputDesig" class="form-control" placeholder="Designation" required >
+                            <input type="hidden" name="rowVal" id="rowVal">
                           </div>
                         </div>
-                        <div>                         
-                            
-                           <div id="updateDiv" align="center"> 
+                        <div>
+                          <div id="updateDiv" align="center"> 
                             <input id="saveForm" name="saveForm" type="button" value="Save" class="btn btn-primary" onclick="AddData()">
                           </div>
                         </div>
@@ -189,10 +140,9 @@
                     </div>
                   </div>
                 </div>
-               <div class="pull-right">
+                <div class="pull-right">
                   Search <input type="text" id="searchItem" class="form-control" onkeyup="doSearch()" />
                 </div>
-                
                 <table class="table table-bordered" id="empTable">
                   <thead>
                     <tr>
@@ -238,238 +188,77 @@
       </div>
     </section>
     <!-- Contact Section -->
-     <section id="contact">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-            <h2>Contact Us</h2>
-          </div>
-          <p>&nbsp;</p>
-          <table>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Water Area</td><td>&nbsp;</td><td><select name="water" id="water" onchange="initAutocomplete();">
-<option value="#0F1386">--Blue--</option>
-<option value="#0DD5D8">--Green--</option>
-
-    </select></td><td>&nbsp;</td><td>Landscape Area</td><td>&nbsp;</td>
-<td><select name="landscape" id="landscape" onchange="initAutocomplete();">
-<option value="#0DD5D8">--Green--</option>
-<option value="#0F1386">--Blue--</option>
-
-
-    </select></td>
-</tr>
-          </table>
-
-    
-          <div class="col xs-12 col-sm-12 col-md-12 col-lg-6 portfolio-item">
-
-    
-   
-    
-
-          <input id="pac-input" class="controls" type="text" placeholder="Search">
-    <div id="map"></div>
-          </div>
-          <div class="col xs-12 col-sm-12 col-md-12 col-lg-6 portfolio-item">
-            <form class="form-horizontal">
-              <div class="form-group">
-                <label for="inputAge" class="control-label col-xs-2">Name</label>
-                <div class="col-xs-8">
-                  <input type="text" class="form-control" id="inputName" placeholder="Name" required>
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <label for="inputAge" class="control-label col-xs-2">Age</label>
-                <div class="col-xs-8">
-                  <input type="number" class="form-control" id="inputAge" placeholder="Age" required>
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <label for="inputEemail" class="control-label col-xs-2">Email</label>
-                <div class="col-xs-8">
-                  <input type="text" class="form-control" id="inputEmail" placeholder="Email" required>
-                </div>
-                <div>
-                </div>
-              </div>
-              
-              
-              
-              <div class="form-group">
-                <label for="inputMsg" class="control-label col-xs-2">Message</label>
-                <div class="col-xs-8">
-                  <textarea class="form-control" rows="3" id="inputMsg"></textarea>
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <div class="col-xs-offset-2 col-xs-8">
-                  <button onclick="myFunction()" class="btn btn-primary">Send</button>
-                  
-                </div>
-              </div>
-            </form>
-
-           
-            
-          </div>
+    <section id="contact">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2>Contact Us</h2>
         </div>
-   </section>
-      
-
-
-
-    <script>
-// This example adds a search box to a map, using the Google Place Autocomplete
-// feature. People can enter geographical searches. The search box will return a
-// pick list containing a mix of places and predicted search terms.
-function initAutocomplete() {
- var water=document.getElementById('water').value;
-var landscape=document.getElementById('landscape').value;
-var customMapType = new google.maps.StyledMapType([
-       {
-    featureType: 'landscape',
-    elementType: 'geometry',
-    stylers: [
-      { hue: landscape },
-      { saturation: 67 },
-      { lightness: -69 },
-      { visibility: 'simplified' }
-    ]
-  },
-     /*{
-    featureType: 'administrative.province',
-    elementType: 'labels',
-    stylers: [
-      { hue: '#ff000' },
-      { saturation: 0 },
-      { lightness: -100 },
-      { visibility: 'simplified' }
-    ]
-  }, */
-  
-      {
-    featureType: 'water',
-    elementType: 'geometry',
-    stylers: [
-      { hue: water },
-      { saturation: 67 },
-      { lightness: -69 },
-      { visibility: 'on' }
-    ]
-  },
-  
-  {
-    featureType: 'water',
-    elementType: 'labels',
-    stylers: [
-      { hue: water },
-      { saturation: -100 },
-      { lightness: 100 },
-      { visibility: 'simplified' }
-    ]
-  }
-    ], {
-      name: 'Custom Style'
-  });
-  var customMapTypeId = 'custom_style';
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 8.5241391, lng: 76.9366376},
-    zoom: 7,
-   mapTypeControlOptions: {
-      mapTypeIds: [google.maps.MapTypeId.ROADMAP, customMapTypeId]
-    }
-  });
-map.mapTypes.set(customMapTypeId, customMapType);
-  map.setMapTypeId(customMapTypeId);
-  //alert();
- //addMarker(8.5241391,76.9366376);
-  // Create the search box and link it to the UI element.
-  var input = document.getElementById('pac-input');
-  var searchBox = new google.maps.places.SearchBox(input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  // Bias the SearchBox results towards current map's viewport.
-  map.addListener('bounds_changed', function() {
-    searchBox.setBounds(map.getBounds());
-  });
-  var markers = [];
-  // [START region_getplaces]
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
-  searchBox.addListener('places_changed', function() {
-    var places = searchBox.getPlaces();
-    if (places.length == 0) {
-      return;
-    }
-    // Clear out the old markers.
-    markers.forEach(function(marker) {
-      marker.setMap(null);
-    });
-    markers = [];
-    // For each place, get the icon, name and location.
-    var bounds = new google.maps.LatLngBounds();
-    places.forEach(function(place) {
-      var icon = {
-        url: place.icon,
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(25, 25)
-      };
-      // Create a marker for each place.
-      markers.push(new google.maps.Marker({
-        map: map,
-        icon: icon,
-        title: place.name,
-        position: place.geometry.location
-      }));
-      if (place.geometry.viewport) {
-        // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
-      }
-    });
-    map.fitBounds(bounds);
-  });
-  // [END region_getplaces]
-//////////////////////
-var arrMarkers = [];
- google.maps.event.addListener(map, 'click', function(event) {
-       
-    map.panTo(event.latLng);
-    map.setZoom(15);
-    //alert(event.latLng);
-      addMarker(event.latLng);
-  });
-function addMarker(location) {
-  
-  marker = new google.maps.Marker({
-    position: location,
-    map: map
-  });
-  arrMarkers.push(marker);
-   
-    google.maps.event.addListener(marker, 'click', function() {
-  
-   // map.panTo(this.getPosition());
-    //map.setZoom(9);
-  });  
-  }
-  ////////////////////////////
-}
-    </script>
+        <p>&nbsp;</p>
+        <table>
+          <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>Water Area</td>
+            <td>&nbsp;</td>
+            <td>
+              <select name="water" id="water" onchange="initAutocomplete();">
+                <option value="#0F1386">--Blue--</option>
+                <option value="#0DD5D8">--Green--</option>
+              </select>
+            </td>
+            <td>&nbsp;</td>
+            <td>Landscape Area</td>
+            <td>&nbsp;</td>
+            <td>
+              <select name="landscape" id="landscape" onchange="initAutocomplete();">
+                <option value="#0DD5D8">--Green--</option>
+                <option value="#0F1386">--Blue--</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        <div class="col xs-12 col-sm-12 col-md-12 col-lg-6 portfolio-item">
+          <input id="pac-input" class="controls" type="text" placeholder="Search">
+          <div id="map"></div>
+        </div>
+        <div class="col xs-12 col-sm-12 col-md-12 col-lg-6 portfolio-item">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="inputAge" class="control-label col-xs-2">Name</label>
+              <div class="col-xs-8">
+                <input type="text" class="form-control" id="inputName" placeholder="Name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAge" class="control-label col-xs-2">Age</label>
+              <div class="col-xs-8">
+                <input type="number" class="form-control" id="inputAge" placeholder="Age" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEemail" class="control-label col-xs-2">Email</label>
+              <div class="col-xs-8">
+                <input type="text" class="form-control" id="inputEmail" placeholder="Email" required>
+              </div>
+              <div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputMsg" class="control-label col-xs-2">Message</label>
+              <div class="col-xs-8">
+                <textarea class="form-control" rows="3" id="inputMsg"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-offset-2 col-xs-8">
+                <button onclick="myFunction()" class="btn btn-primary">Send</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmzA2BthRQSGHqpclsLtWpWccnuYhlx1M&libraries=places&callback=initAutocomplete"
-         async defer></script>
-
-
-
-
-
-
-
-
+      async defer></script>
     <!-- Footer -->
     <footer class="text-center">
       <div class="footer-below">
@@ -482,8 +271,6 @@ function addMarker(location) {
         </div>
       </div>
     </footer>
-    
-    
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
@@ -497,5 +284,3 @@ function addMarker(location) {
     <script src="js/validation.js"></script>
   </body>
 </html>
-Status API Training Shop Blog About Pricing
-© 2015 GitHub, Inc. Terms Privacy Security Contact Help
