@@ -13,22 +13,22 @@ function AddData() {
     var c = document.getElementById("inputDept").value;
     var d = document.getElementById("inputDesig").value;
     if ("" == a) {
-       document.getElementById("alertDiv").innerHTML = " <h5><font color='#ff0000' align='center'>Please input  Name..!!</font></h5>";
+        document.getElementById("alertDiv").innerHTML = " <h5><font color='#ff0000' align='center'>Please input  Name..!!</font></h5>";
         return false;
     } else if ("" == b) {
         document.getElementById("alertDiv").innerHTML = " <h5><font color='#ff0000' align='center'>Please input  Age..!!</font></h5>";
         return false;
-       
+
     }
     if ("" == c) {
         document.getElementById("alertDiv").innerHTML = " <h5><font color='#ff0000' align='center'>Please input  Department..!!</font></h5>";
-        
+
         return false;
     } else if ("" == d) {
-      document.getElementById("alertDiv").innerHTML = " <h5><font color='#ff0000' align='center'>Please input  Designation..!!</font></h5>";
+        document.getElementById("alertDiv").innerHTML = " <h5><font color='#ff0000' align='center'>Please input  Designation..!!</font></h5>";
         return false;
     } else if (isNaN(b) || b <= 0) {
-       document.getElementById("alertDiv").innerHTML = " <h5><font color='#ff0000' align='center'>Invalid Age..!!</font></h5>";
+        document.getElementById("alertDiv").innerHTML = " <h5><font color='#ff0000' align='center'>Invalid Age..!!</font></h5>";
 
         return false;
     } else {
@@ -112,17 +112,17 @@ function doSearch() {
     var searchText = document.getElementById('searchItem').value;
     var targetTable = document.getElementById('empTable');
     var targetTableColCount;
-            
+
     //Loop through table rows
     for (var rowIndex = 0; rowIndex < targetTable.rows.length; rowIndex++) {
         var rowData = '';
 
         //Get column count from header row
         if (rowIndex == 0) {
-           targetTableColCount = targetTable.rows.item(rowIndex).cells.length;
-           continue; //do not execute further code for header row.
+            targetTableColCount = targetTable.rows.item(rowIndex).cells.length;
+            continue; //do not execute further code for header row.
         }
-                
+
         //Process data rows. (rowIndex >= 1)
         for (var colIndex = 0; colIndex < targetTableColCount; colIndex++) {
             rowData += targetTable.rows.item(rowIndex).cells.item(colIndex).textContent;
@@ -138,42 +138,48 @@ function doSearch() {
 }
 
 //Table sorting
- function sortTable(table, col, reverse) {
+function sortTable(table, col, reverse) {
     var tb = table.tBodies[0], // use `<tbody>` to ignore `<thead>` and `<tfoot>` rows
         tr = Array.prototype.slice.call(tb.rows, 0), // put rows into array
         i;
     reverse = -((+reverse) || -1);
-    tr = tr.sort(function (a, b) { // sort rows
+    tr = tr.sort(function(a, b) { // sort rows
         return reverse // `-1 *` if want opposite order
             * (a.cells[col].textContent.trim() // using `.textContent.trim()` for test
                 .localeCompare(b.cells[col].textContent.trim())
-               );
+            );
     });
-    for(i = 0; i < tr.length; ++i) tb.appendChild(tr[i]); // append each row in order
+    for (i = 0; i < tr.length; ++i) tb.appendChild(tr[i]); // append each row in order
 }
 
 function makeSortable(table) {
-    var th = table.tHead, i;
+    var th = table.tHead,
+        i;
     th && (th = th.rows[0]) && (th = th.cells);
     if (th) i = th.length;
     else return; // if no `<thead>` then do nothing
-    while (--i >= 0) (function (i) {
+    while (--i >= 0)(function(i) {
         var dir = 1;
-        th[i].addEventListener('click', function () {sortTable(table, i, (dir = 1 - dir))});
+        th[i].addEventListener('click', function() {
+            sortTable(table, i, (dir = 1 - dir))
+        });
     }(i));
 }
 
 function makeAllSortable(parent) {
     parent = parent || document.body;
-    var t = parent.getElementsByTagName('table'), i = t.length;
+    var t = parent.getElementsByTagName('table'),
+        i = t.length;
     while (--i >= 0) makeSortable(t[i]);
 }
 
-window.onload = function () {makeAllSortable();};
+window.onload = function() {
+    makeAllSortable();
+};
 
 // arrow changing
- function chngimg(val1) {
-     
+function chngimg(val1) {
+
     val1 = "imgplus" + val1;
 
     var img = document.getElementById(val1).src; //= 'Images/Minus.gif';
@@ -182,7 +188,7 @@ window.onload = function () {makeAllSortable();};
     var t = x.length - 1;
     var y = x[t];
     var imgName = y;
-    
+
     var imgsrc1 = 'down.png';
     var imgsrc2 = 'up.png';
     if (imgName == imgsrc1) {
@@ -195,4 +201,135 @@ window.onload = function () {makeAllSortable();};
 
     }
 
+}
+//map
+function initAutocomplete() {
+    var water = document.getElementById('water').value;
+    var landscape = document.getElementById('landscape').value;
+    var customMapType = new google.maps.StyledMapType([{
+            featureType: 'landscape',
+            elementType: 'geometry',
+            stylers: [{
+                hue: landscape
+            }, {
+                saturation: 67
+            }, {
+                lightness: -69
+            }, {
+                visibility: 'simplified'
+            }]
+        },
+        {
+            featureType: 'water',
+            elementType: 'geometry',
+            stylers: [{
+                hue: water
+            }, {
+                saturation: 67
+            }, {
+                lightness: -69
+            }, {
+                visibility: 'on'
+            }]
+        },
+
+        {
+            featureType: 'water',
+            elementType: 'labels',
+            stylers: [{
+                hue: water
+            }, {
+                saturation: -100
+            }, {
+                lightness: 100
+            }, {
+                visibility: 'simplified'
+            }]
+        }
+    ], {
+        name: 'Custom Style'
+    });
+    var customMapTypeId = 'custom_style';
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+            lat: 8.5241391,
+            lng: 76.9366376
+        },
+        zoom: 7,
+        mapTypeControlOptions: {
+            mapTypeIds: [google.maps.MapTypeId.ROADMAP, customMapTypeId]
+        }
+    });
+    map.mapTypes.set(customMapTypeId, customMapType);
+    map.setMapTypeId(customMapTypeId);
+    // Create the search box and link it to the UI element.
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
+    });
+    var markers = [];
+    // [START region_getplaces]
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', function() {
+        var places = searchBox.getPlaces();
+        if (places.length == 0) {
+            return;
+        }
+        // Clear out the old markers.
+        markers.forEach(function(marker) {
+            marker.setMap(null);
+        });
+        markers = [];
+        // For each place, get the icon, name and location.
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function(place) {
+            var icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+                map: map,
+                icon: icon,
+                title: place.name,
+                position: place.geometry.location
+            }));
+            if (place.geometry.viewport) {
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+            } else {
+                bounds.extend(place.geometry.location);
+            }
+        });
+        map.fitBounds(bounds);
+    });
+    // [END region_getplaces]
+    var arrMarkers = [];
+    google.maps.event.addListener(map, 'click', function(event) {
+
+        map.panTo(event.latLng);
+        map.setZoom(15);
+        addMarker(event.latLng);
+    });
+
+    function addMarker(location) {
+
+        marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+        arrMarkers.push(marker);
+
+        google.maps.event.addListener(marker, 'click', function() {
+                       
+        });
+    }
+    
 }
