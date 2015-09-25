@@ -310,12 +310,72 @@
 // pick list containing a mix of places and predicted search terms.
 
 function initAutocomplete() {
+ 
+var customMapType = new google.maps.StyledMapType([
+      {
+    featureType: 'landscape',
+    elementType: 'all',
+    stylers: [
+      { hue: '#CDD2D1' },
+      { saturation: -81 },
+      { lightness: -9 },
+      { visibility: 'on' }
+    ]
+  },
+      {
+    featureType: 'administrative.province',
+    elementType: 'labels',
+    stylers: [
+      { hue: '#ff000' },
+      { saturation: 0 },
+      { lightness: -100 },
+      { visibility: 'simplified' }
+    ]
+  },
+  {
+    featureType: 'poi.park',
+    elementType: 'all',
+    stylers: [
+      { hue: '#045E03' },
+      { saturation: 89 },
+      { lightness: -76 },
+      { visibility: 'on' }
+    ]
+  },
+      {
+    featureType: 'water',
+    elementType: 'geometry',
+    stylers: [
+      { hue: '#0B406F' },
+      { saturation: 67 },
+      { lightness: -69 },
+      { visibility: 'on' }
+    ]
+  },{
+    featureType: 'water',
+    elementType: 'labels',
+    stylers: [
+      { hue: '#ffffff' },
+      { saturation: -100 },
+      { lightness: 100 },
+      { visibility: 'simplified' }
+    ]
+  }
+
+    ], {
+      name: 'Custom Style'
+  });
+  var customMapTypeId = 'custom_style';
+
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 8.5241391, lng: 76.9366376},
-    zoom: 13,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-
+    zoom: 7,
+   mapTypeControlOptions: {
+      mapTypeIds: [google.maps.MapTypeId.ROADMAP, customMapTypeId]
+    }
   });
+map.mapTypes.set(customMapTypeId, customMapType);
+  map.setMapTypeId(customMapTypeId);
   //alert();
  //addMarker(8.5241391,76.9366376);
   // Create the search box and link it to the UI element.
