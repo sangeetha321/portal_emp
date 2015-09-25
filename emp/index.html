@@ -1,3 +1,16 @@
+Skip to content
+This repository  
+Pull requests
+Issues
+Gist
+ @sangeetha321
+ Unwatch 1
+  Star 0
+  Fork 0 sangeetha321/portal_emp
+Branch: gh-pages  portal_emp/emp/index.html
+@sangeetha321sangeetha321 2 hours ago Update index.html
+1 contributor
+RawBlameHistory    508 lines (447 sloc)  17.9 KB
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,7 +56,6 @@
   outline: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
-
 #pac-input {
   background-color: #fff;
   font-family: Roboto;
@@ -54,27 +66,32 @@
   text-overflow: ellipsis;
   width: 300px;
 }
-
+#water {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
 #pac-input:focus {
   border-color: #4d90fe;
 }
-
 .pac-container {
   font-family: Roboto;
 }
-
 #type-selector {
   color: #fff;
   background-color: #4d90fe;
   padding: 5px 11px 0px 11px;
 }
-
 #type-selector label {
   font-family: Roboto;
   font-size: 13px;
   font-weight: 300;
 }
-
     </style>
   </head>
   <body id="page-top" class="index">
@@ -249,7 +266,28 @@
             <h2>Contact Us</h2>
           </div>
           <p>&nbsp;</p>
+          <table>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Water Area</td><td>&nbsp;</td><td><select name="water" id="water" onchange="initAutocomplete();">
+<option value="#0F1386">--Blue--</option>
+<option value="#0DD5D8">--Green--</option>
+
+    </select></td><td>&nbsp;</td><td>Landscape Area</td><td>&nbsp;</td>
+<td><select name="landscape" id="landscape" onchange="initAutocomplete();">
+<option value="#0DD5D8">--Green--</option>
+<option value="#0F1386">--Blue--</option>
+
+
+    </select></td>
+</tr>
+          </table>
+
+    
           <div class="col xs-12 col-sm-12 col-md-12 col-lg-6 portfolio-item">
+
+    
+   
+    
+
           <input id="pac-input" class="controls" type="text" placeholder="Search">
     <div id="map"></div>
           </div>
@@ -308,21 +346,21 @@
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
-
 function initAutocomplete() {
- 
+ var water=document.getElementById('water').value;
+var landscape=document.getElementById('landscape').value;
 var customMapType = new google.maps.StyledMapType([
-      {
+       {
     featureType: 'landscape',
-    elementType: 'all',
+    elementType: 'geometry',
     stylers: [
-      { hue: '#CDD2D1' },
-      { saturation: -81 },
-      { lightness: -9 },
-      { visibility: 'on' }
+      { hue: landscape },
+      { saturation: 67 },
+      { lightness: -69 },
+      { visibility: 'simplified' }
     ]
   },
-      {
+     /*{
     featureType: 'administrative.province',
     elementType: 'labels',
     stylers: [
@@ -331,44 +369,33 @@ var customMapType = new google.maps.StyledMapType([
       { lightness: -100 },
       { visibility: 'simplified' }
     ]
-  },
+  }, */
   
       {
     featureType: 'water',
     elementType: 'geometry',
     stylers: [
-      { hue: '#0B406F' },
+      { hue: water },
       { saturation: 67 },
       { lightness: -69 },
       { visibility: 'on' }
     ]
   },
-  {
-		featureType: 'landscape.natural',
-		elementType: 'all',
-		stylers: [
-			{ hue: '#CDD2D1' },
-			{ saturation: -65 },
-			{ lightness: -14 },
-			{ visibility: 'on' }
-		]
-	},
+  
   {
     featureType: 'water',
     elementType: 'labels',
     stylers: [
-      { hue: '#ffffff' },
+      { hue: water },
       { saturation: -100 },
       { lightness: 100 },
       { visibility: 'simplified' }
     ]
   }
-
     ], {
       name: 'Custom Style'
   });
   var customMapTypeId = 'custom_style';
-
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 8.5241391, lng: 76.9366376},
     zoom: 7,
@@ -384,29 +411,24 @@ map.mapTypes.set(customMapTypeId, customMapType);
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
   // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
-
   var markers = [];
   // [START region_getplaces]
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener('places_changed', function() {
     var places = searchBox.getPlaces();
-
     if (places.length == 0) {
       return;
     }
-
     // Clear out the old markers.
     markers.forEach(function(marker) {
       marker.setMap(null);
     });
     markers = [];
-
     // For each place, get the icon, name and location.
     var bounds = new google.maps.LatLngBounds();
     places.forEach(function(place) {
@@ -417,7 +439,6 @@ map.mapTypes.set(customMapTypeId, customMapType);
         anchor: new google.maps.Point(17, 34),
         scaledSize: new google.maps.Size(25, 25)
       };
-
       // Create a marker for each place.
       markers.push(new google.maps.Marker({
         map: map,
@@ -425,7 +446,6 @@ map.mapTypes.set(customMapTypeId, customMapType);
         title: place.name,
         position: place.geometry.location
       }));
-
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
         bounds.union(place.geometry.viewport);
@@ -436,10 +456,8 @@ map.mapTypes.set(customMapTypeId, customMapType);
     map.fitBounds(bounds);
   });
   // [END region_getplaces]
-
 //////////////////////
 var arrMarkers = [];
-
  google.maps.event.addListener(map, 'click', function(event) {
        
     map.panTo(event.latLng);
@@ -447,7 +465,6 @@ var arrMarkers = [];
     //alert(event.latLng);
       addMarker(event.latLng);
   });
-
 function addMarker(location) {
   
   marker = new google.maps.Marker({
@@ -464,9 +481,6 @@ function addMarker(location) {
   }
   ////////////////////////////
 }
-
-
-
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmzA2BthRQSGHqpclsLtWpWccnuYhlx1M&libraries=places&callback=initAutocomplete"
          async defer></script>
@@ -505,3 +519,5 @@ function addMarker(location) {
     <script src="js/validation.js"></script>
   </body>
 </html>
+Status API Training Shop Blog About Pricing
+© 2015 GitHub, Inc. Terms Privacy Security Contact Help
