@@ -204,9 +204,12 @@ function chngimg(val1) {
 }
 //map
 function initAutocomplete() {
+
     var water = document.getElementById('water').value;
     var landscape = document.getElementById('landscape').value;
-    var customMapType = new google.maps.StyledMapType([{
+    var customMapType = new google.maps.StyledMapType([
+
+        {
             featureType: 'landscape',
             elementType: 'geometry',
             stylers: [{
@@ -219,6 +222,7 @@ function initAutocomplete() {
                 visibility: 'simplified'
             }]
         },
+
         {
             featureType: 'water',
             elementType: 'geometry',
@@ -229,32 +233,20 @@ function initAutocomplete() {
             }, {
                 lightness: -69
             }, {
-                visibility: 'on'
+                visibility: 'simplified'
             }]
         },
 
-        {
-            featureType: 'water',
-            elementType: 'labels',
-            stylers: [{
-                hue: water
-            }, {
-                saturation: -100
-            }, {
-                lightness: 100
-            }, {
-                visibility: 'simplified'
-            }]
-        }
     ], {
         name: 'Custom Style'
     });
     var customMapTypeId = 'custom_style';
+    var myLatLng = {
+        lat: 8.5241391,
+        lng: 76.9366376
+    };
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: {
-            lat: 8.5241391,
-            lng: 76.9366376
-        },
+        center: myLatLng,
         zoom: 7,
         mapTypeControlOptions: {
             mapTypeIds: [google.maps.MapTypeId.ROADMAP, customMapTypeId]
@@ -262,28 +254,64 @@ function initAutocomplete() {
     });
     map.mapTypes.set(customMapTypeId, customMapType);
     map.setMapTypeId(customMapTypeId);
+
+    var json = {
+        "latlong_json": {
+            "type": "LineString",
+            "coordinates": [
+                [8.5241391, 76.9366376],
+                [8.5241392, 77.9366379]
+            ]
+        }
+    }
+
+    var coords = json.latlong_json.coordinates;
+
+    coords.forEach(function(entry) {
+        var k = entry[1];
+        var b = entry[0];
+
+        var newLatLng = {
+            lat: b,
+            lng: k
+        };
+
+
+
+        var marker = new google.maps.Marker({
+
+            position: newLatLng,
+            map: map,
+
+        });
+    }); //for each
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
     // Bias the SearchBox results towards current map's viewport.
     map.addListener('bounds_changed', function() {
         searchBox.setBounds(map.getBounds());
     });
+
     var markers = [];
     // [START region_getplaces]
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     searchBox.addListener('places_changed', function() {
         var places = searchBox.getPlaces();
+
         if (places.length == 0) {
             return;
         }
+
         // Clear out the old markers.
         markers.forEach(function(marker) {
             marker.setMap(null);
         });
         markers = [];
+
         // For each place, get the icon, name and location.
         var bounds = new google.maps.LatLngBounds();
         places.forEach(function(place) {
@@ -294,6 +322,7 @@ function initAutocomplete() {
                 anchor: new google.maps.Point(17, 34),
                 scaledSize: new google.maps.Size(25, 25)
             };
+
             // Create a marker for each place.
             markers.push(new google.maps.Marker({
                 map: map,
@@ -301,6 +330,7 @@ function initAutocomplete() {
                 title: place.name,
                 position: place.geometry.location
             }));
+
             if (place.geometry.viewport) {
                 // Only geocodes have viewport.
                 bounds.union(place.geometry.viewport);
@@ -311,7 +341,10 @@ function initAutocomplete() {
         map.fitBounds(bounds);
     });
     // [END region_getplaces]
+
+    //////////////////////
     var arrMarkers = [];
+
     google.maps.event.addListener(map, 'click', function(event) {
 
         map.panTo(event.latLng);
@@ -328,8 +361,10 @@ function initAutocomplete() {
         arrMarkers.push(marker);
 
         google.maps.event.addListener(marker, 'click', function() {
-                       
+
+            // map.panTo(this.getPosition());
+            //map.setZoom(9);
         });
     }
-    
+    ////////////////////////////
 }
