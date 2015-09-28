@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-US">
+ <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Highlight Boundary</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD0X4v7eqMFcWCR-VZAJwEMfb47id9IZao"></script>
+	<script type="text/javascript">
+	    var map;
+	    var newarkcoords = 
+[
+{ Longitude: "-123.046875", Latitude: "48.922499" },
+{ Longitude: "-95.273438", Latitude: "49.037868" },
+{ Longitude: "-92.285156", Latitude: "48.107431" },
+{ Longitude: "-88.417969", Latitude: "48.341646" },
+{ Longitude: "-84.726563", Latitude: "46.437857" },
+{ Longitude: "-82.265625", Latitude: "45.213004" },
+{ Longitude: "-82.265625", Latitude: "43.580391" },
+{ Longitude: "-82.792969", Latitude: "41.640078" }, 
+{ Longitude: "-79.277344", Latitude: "42.682435" }, 
+{ Longitude: "-78.574219", Latitude: "43.325178" }, 
+{ Longitude: "-76.640625", Latitude: "43.707594" }, 
+{ Longitude: "-74.531250", Latitude: "44.840291" }, 
+{ Longitude: "-71.367188", Latitude: "44.964798" }, 
+{ Longitude: "-68.906250", Latitude: "47.279229" }, 
+{ Longitude: "-67.500000", Latitude: "45.583290" }, 
+{ Longitude: "-66.796875", Latitude: "44.840291" }, 
+{ Longitude: "-70.839844", Latitude: "42.940339" }, 
+{ Longitude: "-69.960938", Latitude: "41.771312" }, 
+{ Longitude: "-73.828125", Latitude: "40.979898" }, 
+{ Longitude: "-74.355469", Latitude: "38.410558" }, 
+{ Longitude: "-75.410156", Latitude: "37.579413" }, 
+{ Longitude: "-76.464844", Latitude: "37.996163" }, 
+{ Longitude: "-76.464844", Latitude: "35.029996" }, 
+{ Longitude: "-81.035156", Latitude: "32.101190" }, 
+{ Longitude: "-80.156250", Latitude: "25.165173" }, 
+{ Longitude: "-82.617188", Latitude: "27.683528" }, 
+{ Longitude: "-83.671875", Latitude: "29.535230" }, 
+{ Longitude: "-85.253906", Latitude: "29.228890" }, 
+{ Longitude: "-87.363281", Latitude: "30.145127" }, 
+{ Longitude: "-89.296875", Latitude: "29.840644" }, 
+{ Longitude: "-90.527344", Latitude: "29.228890" }, 
+{ Longitude: "-94.394531", Latitude: "29.535230" }, 
+{ Longitude: "-96.503906", Latitude: "28.149503" }, 
+{ Longitude: "-97.382813", Latitude: "25.641526" }, 
+{ Longitude: "-99.316406", Latitude: "26.273714" }, 
+{ Longitude: "-101.425781", Latitude: "29.382175" }, 
+{ Longitude: "-103.359375", Latitude: "28.921631" }, 
+{ Longitude: "-105.117188", Latitude: "30.297018" }, 
+{ Longitude: "-108.281250", Latitude: "31.203405" }, 
+{ Longitude: "-111.621094", Latitude: "31.353637" }, 
+{ Longitude: "-116.894531", Latitude: "32.546813" }, 
+{ Longitude: "-120.058594", Latitude: "34.597042" }, 
+{ Longitude: "-123.750000", Latitude: "39.095963" }, 
+{ Longitude: "-123.925781", Latitude: "44.339565" }, 
+{ Longitude: "-124.101563", Latitude: "47.872144" }, 
+{ Longitude: "-123.398438", Latitude: "48.574790" } 
+
+	     ];
+
+	    $(document).ready(function () {
+	        var latlng = new google.maps.LatLng(41.231264, -111.968712);
+	        var myOptions = {
+	            zoom: 3,
+	            center: latlng,
+	            mapTypeId: google.maps.MapTypeId.ROADMAP
+	        };
+	        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+	        var NewarkHighlight;
+	        var mNewarkCoords = new Array;
+
+	        
+	        ///////////////////////////////////////////////////////////////
+var myLatLng = {lat: 41.231264, lng: -111.968712};
+	        var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    
+  });
+google.maps.event.addListener(marker, 'click', function() {
+for (var i = 0; i < newarkcoords.length; i++) {
+	            mNewarkCoords[i] = new google.maps.LatLng(newarkcoords[i].Latitude, newarkcoords[i].Longitude);
+	        }
+	        
+	        NewarkHighlight = new google.maps.Polygon({
+	            paths: mNewarkCoords,
+	            strokeColor: "#6666FF",
+	            strokeOpacity: 0.8,
+	            strokeWeight: 5,
+	            fillColor: "#6666FF",
+	            fillOpacity: 0.35
+	        });
+	        NewarkHighlight.setMap(map);
+            // map.panTo(this.getPosition());
+            //map.setZoom(9);
+        });
+	    });
+ 
+	</script>
+	<style type="text/css">
+		html,body { height: 100%; margin: 0px; padding: 0px; }
+		#map_canvas {
+			width:1000px;
+			height:800px;
+		}		
+	</style>
+</head>
+<body >
+<div id="map_canvas">
+
+</div>
+<!--main-->
+<div id="map_cord"></div>
+</body>	
+</html>
